@@ -68,6 +68,21 @@ const createStoriesTable = () => {
   });
 };
 
+const seedStoriesTable = () => {
+  const sql = `
+    INSERT INTO stories
+    (title, description, image, target_amount, collected_amount, author_id)
+    VALUES
+    ('Save the Rainforest', 'Help us protect the rainforests of South America', 'https://picsum.photos/300/300', 10000.00, 2000.00, 1),
+    ('Clean the Oceans', 'Join us in cleaning up our oceans', 'https://picsum.photos/300/300', 5000.00, 1500.00, 2),
+    ('Support Local Schools', 'Provide resources to local schools', 'https://picsum.photos/300/300', 8000.00, 4000.00, 3)
+  `;
+  db.query(sql, function (err) {
+    if (err) throw err;
+    console.log('Stories table seeded');
+  });
+};
+
 const createDonationsTable = () => {
   const sql = `
     CREATE TABLE IF NOT EXISTS donations (
@@ -85,9 +100,10 @@ const createDonationsTable = () => {
   });
 };
 
-// createUsersTable();
-// seedUsersTable();
-// createStoriesTable();
-// createDonationsTable();
+createUsersTable();
+seedUsersTable();
+createStoriesTable();
+seedStoriesTable();
+createDonationsTable();
 
 module.exports = db;

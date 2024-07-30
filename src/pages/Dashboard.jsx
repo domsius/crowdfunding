@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { isAuthenticated, userId } = useAuth();
@@ -237,7 +238,7 @@ const Dashboard = () => {
                       <div className="mb-4">
                         <div className="w-full bg-gray-200 rounded-full h-4">
                           <div
-                            className="bg-indigo-600 h-4 rounded-full"
+                            className="bg-indigo-600 h-4 rounded-full max-w-full"
                             style={{
                               width: `${
                                 (story.collected_amount / story.target_amount) *
@@ -258,9 +259,20 @@ const Dashboard = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-500 text-center mt-4">
-                  No stories available
-                </p>
+               <>
+                <div className="">
+                  <p className="text-gray-500 text-center mt-4">
+                    No stories available
+                  </p>
+                  <div className="flex justify-center mt-3">
+                  <Link
+                      to="/add-story"
+                      className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">
+                      Add Your Story
+                    </Link>
+                  </div>
+                  </div>
+                </>
               )}
             </div>
           )}
